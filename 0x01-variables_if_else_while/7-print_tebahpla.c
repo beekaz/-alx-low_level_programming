@@ -1,8 +1,8 @@
 #include <stdio.h>
 /**
- * main - Entry function
- * Return: 0 (success)
- */
+* main - Entry function
+* Return: 0(success)
+*/
 int main(void)
 {
 char le;
