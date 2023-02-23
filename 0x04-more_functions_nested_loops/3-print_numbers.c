@@ -1,11 +1,11 @@
 #include "main.h"
 
 /**
- * print_numbers - entry point
+ *void  print_numbers - entry point
  *
  * Description: Prints the numbers with _putchar
  *
- * Return: void
+ * Return: 0
  */
 
 void print_numbers(void)
@@ -17,5 +17,4 @@ for (number = '0'; number <= '9'; number++)
 _putchar(number);
 }
 _putchar('\n');
-return (0);
 }
