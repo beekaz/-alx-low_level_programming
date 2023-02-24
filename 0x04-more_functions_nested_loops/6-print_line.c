@@ -10,17 +10,10 @@
 
 void print_line(int n)
 {
-	int num_lines;
-i	f (n <= 0)
-{
-_putchar('\n');
-}
-else
-{
-for (num_lines = 1; num_lines <= n; num_lines++)
+
+while (n-- > 0)
 {
 _putchar('_');
 }
 _putchar('\n');
-}
 }
