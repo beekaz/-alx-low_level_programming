@@ -3,8 +3,7 @@
 /**
  * print_most_numbers - entry point
  *
- * Description: Prints the numbers with _putchar
- *
+ *print_most_numbers _ print 0-9
  * Return: void
  */
 
