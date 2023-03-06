@@ -1,0 +1,21 @@
+#include "main.h"
+#include <stdio.h>
+
+/**char_memset: Is a function that takes a=in a pointerto fill file
+ * char* s: is an array pointer
+ * char b: is the constant byte which is the value
+ * @n: is the number of the byte
+ */
+char *_memset(char *s, char b, unsigned int n)
+{
+	int i = 0;
+	if (i >= 0)
+	{	
+	for (unsigned int i = 0; i < n; i++)
+    {
+	    *(s + i) = b;
+    }
+	}
+    return s;
+}
+
