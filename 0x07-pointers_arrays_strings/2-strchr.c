@@ -1,26 +1,25 @@
+#include <stdlib.h>
 #include "main.h"
-#include <stdio.h>
 
 /**
- * _strchr:Is a pointer to the str and character
- *char* s: the array pointer
- *@c: is thesearch character
- *Return: 0 if null
+ * _strchr - locates character in string
+ * @s: string pointer variable
+ * @c: character variable
+ *
+ * Return: s or NULL
  */
 
 char *_strchr(char *s, char c)
 {
-	while (*s != '\0')
+	while (*s)
 	{
-		if (*s == c)
-		{
+		if (*s != c)
+			s++;
+		else
 			return (s);
-		}
-		s++;
 	}
 	if (c == '\0')
-	{
 		return (s);
-	}
-	return (0);
+
+	return (NULL);
 }
