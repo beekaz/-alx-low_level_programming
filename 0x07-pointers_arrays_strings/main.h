@@ -10,4 +10,6 @@ char *_memcpy(char *dest, char *src, unsigned int n);
  void print_chessboard(char (*a)[8]);
  void print_diagsums(int *a, int size);
 int _putchar(char c);
+void set_string(char **s, char *to);
+
 #endif
