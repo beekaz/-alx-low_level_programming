@@ -1,6 +1,6 @@
-#ifndef MYHEADER_H
-#define MYHEADER_H
+#ifndef _MACRO_H_
+#define _MACRO_H_
 
 #define SIZE 1024
 
-#endif // MYHEADER_H
+#endif
