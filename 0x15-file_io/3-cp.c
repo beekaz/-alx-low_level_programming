@@ -1,37 +1,72 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * read_textfile - function that reads a text file and
- * prints it to the POSIX standard output.
- * @filename: name of the file to be read
- * @letters: the numbers of letters it should read and print.
- *
- * Return: the actual number of letters it could read and print
+ * error_file - function that checks if files can be opened.
+ * @file_from: file_from.
+ * @file_to: file_to.
+ * @argv: the arguments vector.
+ * Return: no return.
  */
-ssize_t read_textfile(const char *filename, size_t letters)
+void error_file(int file_from, int file_to, char *argv[])
 {
-	char *print_file;
-	int file, read_file;
+	if (file_from == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		exit(98);
+	}
+	if (file_to == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+		exit(99);
+	}
+}
 
-	if (!filename)
-		return (0);
+/**
+ * main - program that copies the content of a file to another file.
+ * @argc: argument counter
+ * @argv: argument vector
+ * Return: 0 Always success
+ */
+int main(int argc, char **argv)
+{
+	int file_from, file_to, err_close;
+	ssize_t nchars, nwr;
+	char buf[1024];
 
-	/*Create the buffer print_file*/
-	print_file = malloc(letters * sizeof(char));
-	if (!print_file)
-		return (0);
+	if (argc != 3)
+	{
+		dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+		exit(97);
+	}
 
-	/*Open the file*/
-	file = open(filename, O_RDONLY);
-	if (file == -1)
-		return (0);
+	file_from = open(argv[1], O_RDONLY);
+	file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
+	error_file(file_from, file_to, argv);
 
-	/*Read the file and save in buffer*/
-	read_file = read(file, print_file, letters);
-	/*Write as standard output*/
-	write(STDOUT_FILENO, print_file, read_file);
+	nchars = 1024;
+	while (nchars == 1024)
+	{
+		nchars = read(file_from, buf, 1024);
+		if (nchars == -1)
+			error_file(-1, 0, argv);
+		nwr = write(file_to, buf, nchars);
+		if (nwr == -1)
+			error_file(0, -1, argv);
+	}
 
-	close(file);
-	free(print_file);
-	return (read_file);
+	err_close = close(file_from);
+	if (err_close == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
+
+	err_close = close(file_to);
+	if (err_close == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+		exit(100);
+	}
+	return (0);
 }
