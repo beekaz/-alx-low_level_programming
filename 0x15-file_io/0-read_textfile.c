@@ -4,7 +4,7 @@
 
 
 /**
- *  read_textfile - reads a text file and prints it to the POSIX standard output
+ *  read_textfile - reads a text file and prints it to the POSIX stdio
  *  @letters: numbers of letters it should read and print
  *  @filename:name of textfile read
  *  Return:  the actual number of letters it could read and if NULL , 0 or -1
