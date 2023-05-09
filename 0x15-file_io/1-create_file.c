@@ -4,7 +4,7 @@
  * create_file - the function creates file
  * @filename:  is the name of the file to create
  * @text_content:  is a NULL terminated string to write to the file
- * Returns: 1 on success, -1 on failure (file can not be created
+ * Return: 1 on success, -1 on failure (file can not be created
  * file can not be written, write “fails”, etc…)
  */
 
